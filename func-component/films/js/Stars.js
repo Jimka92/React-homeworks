@@ -8,9 +8,9 @@ function Stars({count}) {
       <li key={i}><Star/></li>
     );
   }
-   return ( 
+  return (
       <ul className="card-body-stars u-clearfix">
-        {stars}
-      </ul>;
-   );
+          {stars}
+      </ul>
+  );
 }
