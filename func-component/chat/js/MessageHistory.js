@@ -3,7 +3,7 @@
 function MessageHistory(props) {
   if (!Array.isArray(props.list) || props.list.length < 1) return;
   
-  const message = props.list.map(function (message) {
+  const messages = props.list.map(function (message) {
     // Switch Case для определения типа испольуемого компонента
     let usedComponent;
     switch(message.type){
