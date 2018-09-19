@@ -11,14 +11,32 @@ function MessageHistory(props) {
         usedComponent = message;
         break;
         case 'response':
-                UsedComponent = Response;
+                usedComponent = Response;
                 break;
             case 'typing':
-                UsedComponent = Typing;
+                usedComponent = Typing;
                 break;
             default:
                 return null;
         }
+    return(
+      <usedComponent
+      key={message.id}
+                from={message.from}
+                message={{
+                    text: message.text,
+                    time: message.time,
+                    id: message.id
+                }}
+            />
+        );
+    });
+    return(
+        <ul>
+            {messages}
+        </ul>
+    );
+}
     
         
     
