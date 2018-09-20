@@ -1,4 +1,4 @@
-
+'use strict';
 
 const HexInput = props => {
   function onChange(e) {
