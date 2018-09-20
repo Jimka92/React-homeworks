@@ -1,4 +1,4 @@
-
+'use strict';
 
 function AuthForm({onAuth}) {
   let form;
