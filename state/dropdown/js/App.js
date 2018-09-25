@@ -1,8 +1,8 @@
 class App extends React.Component{
   constructor(props){
     super(props);
-    
- this.defaultProps = {
+
+    this.defaultProps = {
       options: []
     };
 
@@ -26,8 +26,9 @@ class App extends React.Component{
       open: !this.state.open
     });
   };
-    
-  render: function () {
+
+
+  render() {
     return (
       <div className="container">
         <div className={`dropdown-wrapper ${this.state.open ? "open" : ""}`} >
@@ -40,7 +41,7 @@ class App extends React.Component{
               <li
                 className={option === this.state.active ? "active" : ""}
                 onClick={() => this.handleChange(option)} >
-                  <a href="#">{option}</a>
+                <a href="#">{option}</a>
               </li>
             ))}
           </ul>
@@ -48,4 +49,4 @@ class App extends React.Component{
       </div>
     );
   }
-});
+}
