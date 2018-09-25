@@ -17,13 +17,21 @@ sort(projects, category) {
     })
   }
   
-  
-  
-  <div>
+  render() {
+    const {filters, projects} = this.props;
+    return (
+      <div>
     <Toolbar
-      filters={props.filters}
-      selected={'All'}
-      onSelectFilter={(filter) => console.log(filter)} />
-    <Portfolio projects={props.projects} />
-  </div>
-);
+          filters={filters}
+          selected={this.state.activeFilter}
+          onSelectFilter={(filter) => {
+      this.setState({
+        'activeFilter': filter
+            });
+      console.log(filer);
+      }}/>
+        <Portfolio projects={this.sort(projects, this.state.activeFilter)}/>
+      </div>
+    );
+  }
+}
