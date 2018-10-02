@@ -9,3 +9,20 @@ const DateInput = props => {
     </div>
   )
 };
+
+DateInput.propTypes = {
+  onChange: propTypes.func.isRequired,
+  name: propTypes.string.isRequired,
+  value: propTypes.string.isRequired,
+};
+
+DateInput.defaultProps = {
+  value: getFormattedDateToday()
+};
+
+function getFormattedDateToday() {
+  const date = new Date();
+  const month = (date.getMonth() + 1) < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const day = (date.getDate() + 1) < 10 ? `0${date.getDate() + 1}` : date.getDate() + 1;
+  return `${date.getFullYear()}-${month}-${day}`;
+}
