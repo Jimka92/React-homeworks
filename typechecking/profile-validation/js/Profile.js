@@ -27,3 +27,45 @@ const Profile = props => {
     </div>
   );
 };
+
+Profile.defaultProps = {
+  img: './images/profile.jpg'
+};
+
+function createCustomDateValidator(isRequired) {
+    return function (props, propName, componentName) {
+        const prop = props[propName];
+        if (prop == null) {
+            if (isRequired) {
+                throw new Error(`Prop ${propName} is required but wasn't specified.`);
+            }
+        } else {
+            if (!/(\d{4})\-(\d{2})\-(\d{2})/.test(props[propName])) {
+                return new Error(
+                    'Invalid prop `' + propName + '` supplied to' +
+                    ' `' + componentName + '`. YYYY-MM-DD Supplied: ' + props[propName]
+                );
+            } else if (+new Date(props[propName]) > +new Date) {
+                return new Error(`Specified date ${props[propName]} is more than today`)
+            }
+        }
+    }
+}
+
+const customDateValidator = createCustomDateValidator(false);
+customDateValidator.isRequired = createCustomDateValidator(true);
+
+Profile.propTypes = {
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    url: function (props, propName, componentName) {
+        if (!/https:\/\/vk.com\/(id[0-9]+|[A-Za-z0-9_-]+)/.test(props[propName])) {
+            return new Error(
+                'Invalid prop `' + propName + '` supplied to' +
+                ' `' + componentName + '`. Expected: https://vk.com/(id[0-9]+|[A-Za-z0-9_-]+) Supplied: ' + props[propName]
+            );
+        }
+    },
+    birthday: customDateValidator.isRequired
+};
