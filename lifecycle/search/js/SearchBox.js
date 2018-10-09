@@ -1,3 +1,12 @@
+function getCoords(elem) {
+  const box = elem.getBoundingClientRect();
+  
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+    };
+}
+
 class SearchBox extends React.Component {
 
   constructor(props) {
