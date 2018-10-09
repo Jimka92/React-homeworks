@@ -21,11 +21,17 @@ class SearchBox extends React.Component {
     this.searchBox = document.querySelector('.search-box');
     this.searchBoxInitialTop = getCoords(this.searchBox).top;
     
-  isFixed() {
-    return undefined;
+    window.addEventListener('scroll',
+      () => this.setPosition(this.isFixed(this.searchBoxInitialTop))
+    );
+  }
+    
+  isFixed(searchBoxInitialTop) {
+    return pageYOffset >= searchBoxInitialTop;
   }
 
-  setPosition() {
-    return undefined;
+
+  setPosition(fixed) {
+    this.setState({fixed});
   }
 }
